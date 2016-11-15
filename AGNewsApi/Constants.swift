@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 let BASE_SOURCE_URL = "https://newsapi.org/v1/sources"
 let BASE_ARTICLE_URL = "https://newsapi.org/v1/articles?source="
 let API_KEY = "&apiKey=262fcd3d295b4304ba053ac59ef70492"

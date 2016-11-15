@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SAMCache
 
 class SourceItem {
     
@@ -17,6 +18,12 @@ class SourceItem {
     var category: String?
     
     static func photoForSource(urlToLogoSmall: String, completion:@escaping (_ image:UIImage) -> Void) {
+        
+        let key = "\(urlToLogoSmall)"
+        
+        if let img = SAMCache.shared().image(forKey: key) {
+            completion(img)
+        } else {
         
         let url = URL(string: urlToLogoSmall)
         let config = URLSessionConfiguration.default
@@ -39,6 +46,6 @@ class SourceItem {
             }
         }
         task.resume()
+        }
     }
-    
-   }
+}

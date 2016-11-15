@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SAMCache
 
 class ArticleItem {
     
@@ -17,6 +18,12 @@ class ArticleItem {
     var timePublished: String?
     
     static func photoForArticle(urlToImage: String, completion:@escaping (_ image:UIImage) -> Void) {
+        
+        let key = "\(urlToImage)"
+        
+        if let img = SAMCache.shared().image(forKey: key) {
+            completion(img)
+        } else {
         
         guard let url = URL(string: urlToImage) else {
             return
@@ -41,5 +48,6 @@ class ArticleItem {
             }
         }
         task.resume()
+    }
     }
 }
